@@ -12,6 +12,12 @@
       "CI": "false"
     }
   },
+  "routes": [
+    {
+      "src": "^/(?!.*\\..*$).*$",
+      "dest": "/index.html"
+    }
+  ],
   "env": {
     "DATABASE_URL": "",
     "NODE_ENV": "",
