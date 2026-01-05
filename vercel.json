@@ -15,7 +15,7 @@
   "routes": [
     {
       "src": "^/(?!.*\\..*$).*$",
-      "dest": "/index.html"
+      "dest": "/frontend/index.html"
     }
   ],
   "env": {
