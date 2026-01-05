@@ -14,11 +14,11 @@
       "destination": "backend/server-new.js"
     }
   ],
-  "env": [
-    "DATABASE_URL",
-    "NODE_ENV",
-    "PORT",
-    "FRONTEND_URL",
-    "JWT_SECRET"
-  ]
+  "env": {
+    "DATABASE_URL": "",
+    "NODE_ENV": "",
+    "PORT": "",
+    "FRONTEND_URL": "",
+    "JWT_SECRET": ""
+  }
 }
