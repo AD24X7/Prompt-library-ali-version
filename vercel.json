@@ -7,6 +7,11 @@
       "config": { "distDir": "build" }
     }
   ],
+  "build": {
+    "env": {
+      "CI": "false"
+    }
+  },
   "env": {
     "DATABASE_URL": "",
     "NODE_ENV": "",
