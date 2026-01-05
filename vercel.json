@@ -6,6 +6,11 @@
       "use": "@vercel/static-build",
       "config": { "distDir": "build" }
     }
+    ,
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
   ],
   "build": {
     "env": {
@@ -40,6 +45,10 @@
     {
       "src": "^/logo512.png$",
       "dest": "/frontend/logo512.png"
+    },
+    {
+      "src": "^/api/:path*",
+      "dest": "/api/index.js"
     },
     {
       "src": "^/(?!.*\\..*$).*$",
