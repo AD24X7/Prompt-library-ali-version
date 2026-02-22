@@ -1,0 +1,124 @@
+{
+  "categories": {
+    "project-management": {
+      "players": ["Asana", "Linear", "Monday.com", "ClickUp", "Notion", "Trello"],
+      "avgPricing": "$8-25/user/mo",
+      "marketSize": "$7.1B",
+      "saturation": "very_high",
+      "moat": "network effects, integrations",
+      "opportunity": "Niche vertical PM tools still win (e.g. Shortcut for eng, Planhat for CS)"
+    },
+    "crm": {
+      "players": ["Salesforce", "HubSpot", "Pipedrive", "Close", "Attio", "Folk"],
+      "avgPricing": "$15-150/user/mo",
+      "marketSize": "$69B",
+      "saturation": "very_high",
+      "moat": "data lock-in, integrations",
+      "opportunity": "Vertical CRMs (real estate, recruiting, agencies) still viable"
+    },
+    "analytics": {
+      "players": ["Mixpanel", "Amplitude", "PostHog", "Heap", "Plausible"],
+      "avgPricing": "$0-199/mo",
+      "marketSize": "$12B",
+      "saturation": "high",
+      "moat": "data gravity",
+      "opportunity": "Privacy-first analytics, niche industry analytics"
+    },
+    "ai-writing": {
+      "players": ["Jasper", "Copy.ai", "Writer", "Grammarly", "ChatGPT"],
+      "avgPricing": "$20-99/mo",
+      "marketSize": "$2.8B",
+      "saturation": "very_high",
+      "moat": "low — commodity LLM wrappers",
+      "opportunity": "Workflow-specific tools (legal briefs, medical notes, SEC filings)"
+    },
+    "ecommerce": {
+      "players": ["Shopify", "WooCommerce", "BigCommerce", "Gumroad", "Lemonsqueezy"],
+      "avgPricing": "$29-299/mo",
+      "marketSize": "$8.1B",
+      "saturation": "high",
+      "moat": "merchant lock-in, app ecosystem",
+      "opportunity": "Niche: digital products, creator commerce, B2B ecommerce"
+    },
+    "scheduling": {
+      "players": ["Calendly", "Cal.com", "SavvyCal", "TidyCal"],
+      "avgPricing": "$8-16/user/mo",
+      "marketSize": "$633M",
+      "saturation": "high",
+      "moat": "low",
+      "opportunity": "Industry-specific scheduling (healthcare, salons, field service)"
+    },
+    "form-builder": {
+      "players": ["Typeform", "Tally", "Jotform", "Google Forms", "Fillout"],
+      "avgPricing": "$0-83/mo",
+      "marketSize": "$3.2B",
+      "saturation": "high",
+      "moat": "low",
+      "opportunity": "Verticalized forms (intake, compliance, surveys with analysis)"
+    },
+    "email-marketing": {
+      "players": ["Mailchimp", "ConvertKit", "Beehiiv", "Resend", "Loops"],
+      "avgPricing": "$0-99/mo",
+      "marketSize": "$12.6B",
+      "saturation": "high",
+      "moat": "subscriber lock-in",
+      "opportunity": "Niche audiences (devs, creators, local business)"
+    },
+    "no-code-builder": {
+      "players": ["Bubble", "Webflow", "Softr", "Glide", "Retool"],
+      "avgPricing": "$25-199/mo",
+      "marketSize": "$21B",
+      "saturation": "medium",
+      "moat": "learning curve, templates",
+      "opportunity": "Vertical solutions built on no-code (specific industry apps)"
+    },
+    "social-media-tool": {
+      "players": ["Buffer", "Hootsuite", "Later", "Typefully", "Hypefury"],
+      "avgPricing": "$15-99/mo",
+      "marketSize": "$17.2B",
+      "saturation": "high",
+      "moat": "low — API-dependent",
+      "opportunity": "Platform-specific deep tools, AI-generated content"
+    },
+    "developer-tool": {
+      "players": ["GitHub", "Vercel", "Supabase", "Railway", "Render"],
+      "avgPricing": "$0-49/mo",
+      "marketSize": "$45B",
+      "saturation": "medium",
+      "moat": "developer adoption, ecosystem",
+      "opportunity": "Specialized dev tools (testing, monitoring, niche infra)"
+    },
+    "design-tool": {
+      "players": ["Figma", "Canva", "Framer", "Penpot"],
+      "avgPricing": "$0-45/user/mo",
+      "marketSize": "$16B",
+      "saturation": "high",
+      "moat": "collaboration network effects",
+      "opportunity": "Niche design tools (presentations, diagrams, prototyping)"
+    },
+    "fintech": {
+      "players": ["Stripe", "Square", "Wise", "Mercury", "Brex"],
+      "avgPricing": "transaction-based",
+      "marketSize": "$340B",
+      "saturation": "medium",
+      "moat": "regulatory, trust, integrations",
+      "opportunity": "Vertical fintech (creator payouts, freelancer invoicing, micro-lending)"
+    },
+    "education": {
+      "players": ["Teachable", "Thinkific", "Podia", "Kajabi", "Skool"],
+      "avgPricing": "$39-199/mo",
+      "marketSize": "$16.3B",
+      "saturation": "medium",
+      "moat": "content lock-in",
+      "opportunity": "Cohort-based learning, AI tutoring, skill-specific platforms"
+    },
+    "health-wellness": {
+      "players": ["Calm", "Headspace", "Noom", "MyFitnessPal"],
+      "avgPricing": "$10-60/mo",
+      "marketSize": "$7.2B",
+      "saturation": "medium",
+      "moat": "habit formation, data",
+      "opportunity": "Niche wellness (sleep, nutrition tracking, mental health journaling)"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "saasMedians": {
+    "source": "OpenView 2024 SaaS Benchmarks, KeyBanc 2024",
+    "medianARR_0_1M": {
+      "months_to_reach": 18,
+      "grossMargin": 0.75,
+      "netRevRetention": 1.05,
+      "churnMonthly": 0.05
+    },
+    "medianARR_1_5M": {
+      "months_to_reach": 30,
+      "grossMargin": 0.78,
+      "netRevRetention": 1.10,
+      "churnMonthly": 0.035
+    }
+  },
+  "pricingBenchmarks": {
+    "micro_saas": {
+      "typical_range": [9, 49],
+      "sweet_spot": 29,
+      "model": "flat monthly"
+    },
+    "developer_tool": {
+      "typical_range": [0, 99],
+      "sweet_spot": 19,
+      "model": "freemium + usage"
+    },
+    "b2b_saas": {
+      "typical_range": [29, 299],
+      "sweet_spot": 79,
+      "model": "per seat monthly"
+    },
+    "marketplace": {
+      "typical_range": [0, 0],
+      "sweet_spot": 0,
+      "model": "transaction fee 5-15%"
+    },
+    "consumer_app": {
+      "typical_range": [0, 14.99],
+      "sweet_spot": 4.99,
+      "model": "freemium + premium"
+    },
+    "api_service": {
+      "typical_range": [0, 499],
+      "sweet_spot": 49,
+      "model": "usage-based tiers"
+    },
+    "content_platform": {
+      "typical_range": [5, 29],
+      "sweet_spot": 12,
+      "model": "subscription"
+    },
+    "ecommerce_tool": {
+      "typical_range": [29, 199],
+      "sweet_spot": 59,
+      "model": "flat + percentage"
+    }
+  },
+  "conversionRates": {
+    "freemium_to_paid": 0.03,
+    "free_trial_to_paid": 0.15,
+    "landing_page_signup": 0.035,
+    "visitor_to_trial": 0.07
+  },
+  "revenueMultiples": {
+    "high_growth_saas": "10-15x ARR",
+    "moderate_growth_saas": "5-8x ARR",
+    "lifestyle_saas": "3-5x ARR",
+    "declining_saas": "1-3x ARR"
+  }
+}
