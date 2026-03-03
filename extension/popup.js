@@ -3,6 +3,10 @@
 const $ = (sel) => document.querySelector(sel);
 const content = $("#content");
 
+let currentTabId = null;
+let currentAnalysis = null;
+let currentVision = "";
+
 // ── Boot ──────────────────────────────────────────────────────────────
 async function init() {
   try {
@@ -12,7 +16,24 @@ async function init() {
       return;
     }
 
-    chrome.runtime.sendMessage({ action: "analyze", tabId: tab.id }, (result) => {
+    currentTabId = tab.id;
+    requestAnalysis();
+  } catch (err) {
+    showError("Unexpected error", err.message);
+  }
+}
+
+function requestAnalysis(vision) {
+  content.innerHTML = `
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <div class="loading-text">${vision ? "Recalculating with your vision..." : "Analyzing prototype..."}</div>
+    </div>
+  `;
+
+  chrome.runtime.sendMessage(
+    { action: "analyze", tabId: currentTabId, vision: vision || undefined },
+    (result) => {
       if (chrome.runtime.lastError) {
         showError("Connection error", chrome.runtime.lastError.message);
         return;
@@ -25,11 +46,11 @@ async function init() {
         );
         return;
       }
+      currentAnalysis = result.analysis;
+      currentVision = vision || "";
       render(result.analysis);
-    });
-  } catch (err) {
-    showError("Unexpected error", err.message);
-  }
+    }
+  );
 }
 
 // ── Error state ───────────────────────────────────────────────────────
@@ -55,8 +76,20 @@ function render(a) {
   // Overall score
   content.appendChild(renderScoreSection(a));
 
+  // Prototype description
+  content.appendChild(renderPrototypeDescription(a.prototypeDescription));
+
+  // Vision editor
+  content.appendChild(renderVisionEditor(a.summary.vision));
+
   // Revenue projection
   content.appendChild(renderRevenue(a.revenue));
+
+  // ICP — Who is the customer?
+  content.appendChild(renderICP(a.icp));
+
+  // Market sizing
+  content.appendChild(renderMarketSizing(a.marketSizing));
 
   // Monetization
   content.appendChild(renderMonetization(a.monetization));
@@ -110,6 +143,73 @@ function renderScoreSection(a) {
   return el;
 }
 
+// ── Prototype description ─────────────────────────────────────────────
+function renderPrototypeDescription(proto) {
+  const el = section("What We Found", null);
+  let html = `
+    <div class="proto-card">
+      <div class="proto-title">${esc(proto.title)}</div>
+      <div class="proto-pitch">${esc(proto.catchyPitch)}</div>
+  `;
+
+  if (proto.techStack.length > 0) {
+    html += `<div class="proto-tech">`;
+    html += proto.techStack.map((t) => `<span class="tech-pill">${esc(t)}</span>`).join("");
+    html += `</div>`;
+  }
+
+  html += `
+      <div class="proto-stats">
+        <span class="proto-stat">${proto.stats.pages} pages</span>
+        <span class="proto-stat-sep">&middot;</span>
+        <span class="proto-stat">${proto.stats.features} sections</span>
+        <span class="proto-stat-sep">&middot;</span>
+        <span class="proto-stat">${proto.stats.interactiveElements} inputs</span>
+        <span class="proto-stat-sep">&middot;</span>
+        <span class="proto-stat">${proto.stats.images} images</span>
+      </div>
+    </div>
+  `;
+
+  el.querySelector(".section-body").innerHTML = html;
+  return el;
+}
+
+// ── Vision editor ─────────────────────────────────────────────────────
+function renderVisionEditor(currentVisionText) {
+  const el = section("Your Vision", null);
+  const val = currentVisionText || currentVision || "";
+
+  let html = `
+    <div class="vision-editor">
+      <div class="vision-hint">Describe your product vision — we'll factor it into the score.</div>
+      <textarea class="vision-input" id="visionInput" placeholder="e.g. &quot;The Calendly for pet groomers — simple booking for small animal care businesses&quot;" rows="3">${esc(val)}</textarea>
+      <button class="vision-btn" id="visionBtn">
+        <span class="vision-btn-icon">&#x21BB;</span> Recalculate with vision
+      </button>
+    </div>
+  `;
+
+  el.querySelector(".section-body").innerHTML = html;
+
+  // Attach event after rendering
+  setTimeout(() => {
+    const btn = document.getElementById("visionBtn");
+    const input = document.getElementById("visionInput");
+    if (btn && input) {
+      btn.addEventListener("click", () => {
+        const v = input.value.trim();
+        if (v) {
+          currentVision = v;
+          requestAnalysis(v);
+        }
+      });
+    }
+  }, 0);
+
+  return el;
+}
+
 // ── Revenue ───────────────────────────────────────────────────────────
 function renderRevenue(rev) {
   const el = section("Revenue Projection", null);
@@ -133,6 +233,61 @@ function renderRevenue(rev) {
   `;
 
   el.querySelector(".section-body").innerHTML = scenariosHtml;
+  return el;
+}
+
+// ── ICP section ───────────────────────────────────────────────────────
+function renderICP(icp) {
+  const el = section("Ideal Customer Profile", null);
+  let html = `
+    <div class="icp-card">
+      <div class="icp-label">Who should you sell to?</div>
+      <div class="icp-profile">${esc(icp.profile)}</div>
+      <div class="icp-why-label">Why this ICP?</div>
+      <div class="icp-why">${esc(icp.reasoning)}</div>
+    </div>
+    <div class="icp-signals">
+  `;
+
+  for (const signal of icp.signals) {
+    html += `
+      <div class="signal">
+        <span class="signal-dot positive"></span>
+        <span>${esc(signal)}</span>
+      </div>
+    `;
+  }
+
+  html += `</div>`;
+  el.querySelector(".section-body").innerHTML = html;
+  return el;
+}
+
+// ── Market sizing ─────────────────────────────────────────────────────
+function renderMarketSizing(ms) {
+  const el = section("Market Sizing", null);
+  let html = `
+    <div class="market-sizing-grid">
+      <div class="market-size-card tam">
+        <div class="ms-label">${esc(ms.tam.label)}</div>
+        <div class="ms-value">${esc(ms.tam.value)}</div>
+        <div class="ms-desc">${esc(ms.tam.description)}</div>
+      </div>
+      <div class="market-size-card sam">
+        <div class="ms-label">${esc(ms.sam.label)}</div>
+        <div class="ms-value">${esc(ms.sam.value)}</div>
+        <div class="ms-desc">${esc(ms.sam.description)}</div>
+      </div>
+      <div class="market-size-card som">
+        <div class="ms-label">${esc(ms.som.label)}</div>
+        <div class="ms-value">${esc(ms.som.value)}</div>
+        <div class="ms-desc">${esc(ms.som.description)}</div>
+      </div>
+    </div>
+    <div class="market-narrative">${esc(ms.narrative)}</div>
+  `;
+
+  el.querySelector(".section-body").innerHTML = html;
   return el;
 }
 
@@ -175,7 +330,13 @@ function renderCompetitive(c) {
 
   if (c.players && c.players.length > 0) {
     html += `<div class="competitor-pills">`;
-    html += c.players.map((p) => `<span class="competitor-pill">${esc(p)}</span>`).join("");
+    html += c.players.map((p) => {
+      if (typeof p === "object" && p.url) {
+        return `<a class="competitor-pill competitor-link" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.name)}</a>`;
+      }
+      const name = typeof p === "object" ? p.name : p;
+      return `<span class="competitor-pill">${esc(name)}</span>`;
+    }).join("");
     html += `</div>`;
   }
 

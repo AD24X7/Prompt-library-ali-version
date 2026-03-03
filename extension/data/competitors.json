@@ -1,124 +1,288 @@
 {
   "categories": {
     "project-management": {
-      "players": ["Asana", "Linear", "Monday.com", "ClickUp", "Notion", "Trello"],
+      "players": [
+        { "name": "Asana", "url": "https://asana.com" },
+        { "name": "Linear", "url": "https://linear.app" },
+        { "name": "Monday.com", "url": "https://monday.com" },
+        { "name": "ClickUp", "url": "https://clickup.com" },
+        { "name": "Notion", "url": "https://notion.so" },
+        { "name": "Trello", "url": "https://trello.com" }
+      ],
       "avgPricing": "$8-25/user/mo",
       "marketSize": "$7.1B",
       "saturation": "very_high",
       "moat": "network effects, integrations",
-      "opportunity": "Niche vertical PM tools still win (e.g. Shortcut for eng, Planhat for CS)"
+      "opportunity": "Niche vertical PM tools still win (e.g. Shortcut for eng, Planhat for CS)",
+      "icp": "Product & engineering teams at mid-market startups (50-500 employees) who need async task coordination",
+      "icpWhy": "Teams at this size outgrow spreadsheets but find enterprise tools bloated — highest willingness to pay for focused solutions",
+      "tam": "$7.1B",
+      "sam": "$2.1B",
+      "som": "$21M"
     },
     "crm": {
-      "players": ["Salesforce", "HubSpot", "Pipedrive", "Close", "Attio", "Folk"],
+      "players": [
+        { "name": "Salesforce", "url": "https://salesforce.com" },
+        { "name": "HubSpot", "url": "https://hubspot.com" },
+        { "name": "Pipedrive", "url": "https://pipedrive.com" },
+        { "name": "Close", "url": "https://close.com" },
+        { "name": "Attio", "url": "https://attio.com" },
+        { "name": "Folk", "url": "https://folk.app" }
+      ],
       "avgPricing": "$15-150/user/mo",
       "marketSize": "$69B",
       "saturation": "very_high",
       "moat": "data lock-in, integrations",
-      "opportunity": "Vertical CRMs (real estate, recruiting, agencies) still viable"
+      "opportunity": "Vertical CRMs (real estate, recruiting, agencies) still viable",
+      "icp": "Sales-led B2B startups with 5-50 person sales teams managing complex deal cycles",
+      "icpWhy": "These teams generate enough revenue per rep to justify CRM spend but need faster setup than Salesforce",
+      "tam": "$69B",
+      "sam": "$12B",
+      "som": "$60M"
     },
     "analytics": {
-      "players": ["Mixpanel", "Amplitude", "PostHog", "Heap", "Plausible"],
+      "players": [
+        { "name": "Mixpanel", "url": "https://mixpanel.com" },
+        { "name": "Amplitude", "url": "https://amplitude.com" },
+        { "name": "PostHog", "url": "https://posthog.com" },
+        { "name": "Heap", "url": "https://heap.io" },
+        { "name": "Plausible", "url": "https://plausible.io" }
+      ],
       "avgPricing": "$0-199/mo",
       "marketSize": "$12B",
       "saturation": "high",
       "moat": "data gravity",
-      "opportunity": "Privacy-first analytics, niche industry analytics"
+      "opportunity": "Privacy-first analytics, niche industry analytics",
+      "icp": "Growth-stage product teams (Series A-C) who need behavioral analytics beyond Google Analytics",
+      "icpWhy": "Post-PMF companies need retention/funnel data to optimize — high urgency, clear budget allocation",
+      "tam": "$12B",
+      "sam": "$3.6B",
+      "som": "$36M"
     },
     "ai-writing": {
-      "players": ["Jasper", "Copy.ai", "Writer", "Grammarly", "ChatGPT"],
+      "players": [
+        { "name": "Jasper", "url": "https://jasper.ai" },
+        { "name": "Copy.ai", "url": "https://copy.ai" },
+        { "name": "Writer", "url": "https://writer.com" },
+        { "name": "Grammarly", "url": "https://grammarly.com" },
+        { "name": "ChatGPT", "url": "https://chat.openai.com" }
+      ],
       "avgPricing": "$20-99/mo",
       "marketSize": "$2.8B",
       "saturation": "very_high",
       "moat": "low — commodity LLM wrappers",
-      "opportunity": "Workflow-specific tools (legal briefs, medical notes, SEC filings)"
+      "opportunity": "Workflow-specific tools (legal briefs, medical notes, SEC filings)",
+      "icp": "Content marketers and copywriters at SMBs producing 10+ pieces/week who need speed over polish",
+      "icpWhy": "Volume writers get immediate ROI from AI — measurable time savings with high output pressure",
+      "tam": "$2.8B",
+      "sam": "$840M",
+      "som": "$8.4M"
     },
     "ecommerce": {
-      "players": ["Shopify", "WooCommerce", "BigCommerce", "Gumroad", "Lemonsqueezy"],
+      "players": [
+        { "name": "Shopify", "url": "https://shopify.com" },
+        { "name": "WooCommerce", "url": "https://woocommerce.com" },
+        { "name": "BigCommerce", "url": "https://bigcommerce.com" },
+        { "name": "Gumroad", "url": "https://gumroad.com" },
+        { "name": "Lemonsqueezy", "url": "https://lemonsqueezy.com" }
+      ],
       "avgPricing": "$29-299/mo",
       "marketSize": "$8.1B",
       "saturation": "high",
       "moat": "merchant lock-in, app ecosystem",
-      "opportunity": "Niche: digital products, creator commerce, B2B ecommerce"
+      "opportunity": "Niche: digital products, creator commerce, B2B ecommerce",
+      "icp": "Solo creators and small brands ($10K-$500K revenue) selling digital or niche physical products",
+      "icpWhy": "Underserved by Shopify's complexity — willing to pay for simplicity and creator-friendly UX",
+      "tam": "$8.1B",
+      "sam": "$2.4B",
+      "som": "$24M"
     },
     "scheduling": {
-      "players": ["Calendly", "Cal.com", "SavvyCal", "TidyCal"],
+      "players": [
+        { "name": "Calendly", "url": "https://calendly.com" },
+        { "name": "Cal.com", "url": "https://cal.com" },
+        { "name": "SavvyCal", "url": "https://savvycal.com" },
+        { "name": "TidyCal", "url": "https://tidycal.com" }
+      ],
       "avgPricing": "$8-16/user/mo",
       "marketSize": "$633M",
       "saturation": "high",
       "moat": "low",
-      "opportunity": "Industry-specific scheduling (healthcare, salons, field service)"
+      "opportunity": "Industry-specific scheduling (healthcare, salons, field service)",
+      "icp": "Service professionals (consultants, coaches, therapists) booking 20+ meetings/week",
+      "icpWhy": "High frequency schedulers feel the pain daily — scheduling is their bottleneck, not a nice-to-have",
+      "tam": "$633M",
+      "sam": "$190M",
+      "som": "$1.9M"
     },
     "form-builder": {
-      "players": ["Typeform", "Tally", "Jotform", "Google Forms", "Fillout"],
+      "players": [
+        { "name": "Typeform", "url": "https://typeform.com" },
+        { "name": "Tally", "url": "https://tally.so" },
+        { "name": "Jotform", "url": "https://jotform.com" },
+        { "name": "Google Forms", "url": "https://forms.google.com" },
+        { "name": "Fillout", "url": "https://fillout.com" }
+      ],
       "avgPricing": "$0-83/mo",
       "marketSize": "$3.2B",
       "saturation": "high",
       "moat": "low",
-      "opportunity": "Verticalized forms (intake, compliance, surveys with analysis)"
+      "opportunity": "Verticalized forms (intake, compliance, surveys with analysis)",
+      "icp": "Operations and marketing teams at SMBs collecting structured data (leads, feedback, applications)",
+      "icpWhy": "Forms are the gateway to workflows — teams with high submission volume need advanced logic and integrations",
+      "tam": "$3.2B",
+      "sam": "$960M",
+      "som": "$9.6M"
     },
     "email-marketing": {
-      "players": ["Mailchimp", "ConvertKit", "Beehiiv", "Resend", "Loops"],
+      "players": [
+        { "name": "Mailchimp", "url": "https://mailchimp.com" },
+        { "name": "ConvertKit", "url": "https://convertkit.com" },
+        { "name": "Beehiiv", "url": "https://beehiiv.com" },
+        { "name": "Resend", "url": "https://resend.com" },
+        { "name": "Loops", "url": "https://loops.so" }
+      ],
       "avgPricing": "$0-99/mo",
       "marketSize": "$12.6B",
       "saturation": "high",
       "moat": "subscriber lock-in",
-      "opportunity": "Niche audiences (devs, creators, local business)"
+      "opportunity": "Niche audiences (devs, creators, local business)",
+      "icp": "Solo creators and newsletter operators with 1K-50K subscribers monetizing through sponsorships or paid subs",
+      "icpWhy": "Newsletter economics are clear — every subscriber has a dollar value, making tool ROI easy to justify",
+      "tam": "$12.6B",
+      "sam": "$3.8B",
+      "som": "$38M"
     },
     "no-code-builder": {
-      "players": ["Bubble", "Webflow", "Softr", "Glide", "Retool"],
+      "players": [
+        { "name": "Bubble", "url": "https://bubble.io" },
+        { "name": "Webflow", "url": "https://webflow.com" },
+        { "name": "Softr", "url": "https://softr.io" },
+        { "name": "Glide", "url": "https://glideapps.com" },
+        { "name": "Retool", "url": "https://retool.com" }
+      ],
       "avgPricing": "$25-199/mo",
       "marketSize": "$21B",
       "saturation": "medium",
       "moat": "learning curve, templates",
-      "opportunity": "Vertical solutions built on no-code (specific industry apps)"
+      "opportunity": "Vertical solutions built on no-code (specific industry apps)",
+      "icp": "Non-technical founders and ops teams at SMBs building internal tools or MVPs without developers",
+      "icpWhy": "The cost of hiring a developer ($150K+/yr) makes $200/mo tools an obvious ROI for simple app needs",
+      "tam": "$21B",
+      "sam": "$6.3B",
+      "som": "$63M"
     },
     "social-media-tool": {
-      "players": ["Buffer", "Hootsuite", "Later", "Typefully", "Hypefury"],
+      "players": [
+        { "name": "Buffer", "url": "https://buffer.com" },
+        { "name": "Hootsuite", "url": "https://hootsuite.com" },
+        { "name": "Later", "url": "https://later.com" },
+        { "name": "Typefully", "url": "https://typefully.com" },
+        { "name": "Hypefury", "url": "https://hypefury.com" }
+      ],
       "avgPricing": "$15-99/mo",
       "marketSize": "$17.2B",
       "saturation": "high",
       "moat": "low — API-dependent",
-      "opportunity": "Platform-specific deep tools, AI-generated content"
+      "opportunity": "Platform-specific deep tools, AI-generated content",
+      "icp": "Solopreneurs and small marketing teams managing 3+ social channels with daily posting schedules",
+      "icpWhy": "Multi-channel management is a daily time sink — the pain is acute and recurring, driving consistent renewals",
+      "tam": "$17.2B",
+      "sam": "$5.2B",
+      "som": "$52M"
     },
     "developer-tool": {
-      "players": ["GitHub", "Vercel", "Supabase", "Railway", "Render"],
+      "players": [
+        { "name": "GitHub", "url": "https://github.com" },
+        { "name": "Vercel", "url": "https://vercel.com" },
+        { "name": "Supabase", "url": "https://supabase.com" },
+        { "name": "Railway", "url": "https://railway.app" },
+        { "name": "Render", "url": "https://render.com" }
+      ],
       "avgPricing": "$0-49/mo",
       "marketSize": "$45B",
       "saturation": "medium",
       "moat": "developer adoption, ecosystem",
-      "opportunity": "Specialized dev tools (testing, monitoring, niche infra)"
+      "opportunity": "Specialized dev tools (testing, monitoring, niche infra)",
+      "icp": "Full-stack developers and small engineering teams (2-10 devs) shipping SaaS products",
+      "icpWhy": "Developers adopt tools bottoms-up and have purchasing influence — low CAC through community and content",
+      "tam": "$45B",
+      "sam": "$13.5B",
+      "som": "$135M"
     },
     "design-tool": {
-      "players": ["Figma", "Canva", "Framer", "Penpot"],
+      "players": [
+        { "name": "Figma", "url": "https://figma.com" },
+        { "name": "Canva", "url": "https://canva.com" },
+        { "name": "Framer", "url": "https://framer.com" },
+        { "name": "Penpot", "url": "https://penpot.app" }
+      ],
       "avgPricing": "$0-45/user/mo",
       "marketSize": "$16B",
       "saturation": "high",
       "moat": "collaboration network effects",
-      "opportunity": "Niche design tools (presentations, diagrams, prototyping)"
+      "opportunity": "Niche design tools (presentations, diagrams, prototyping)",
+      "icp": "Product designers and marketing teams at startups who need fast visual output without enterprise complexity",
+      "icpWhy": "Design tools are daily-use software — high switching cost once workflows are built, strong retention",
+      "tam": "$16B",
+      "sam": "$4.8B",
+      "som": "$48M"
     },
     "fintech": {
-      "players": ["Stripe", "Square", "Wise", "Mercury", "Brex"],
+      "players": [
+        { "name": "Stripe", "url": "https://stripe.com" },
+        { "name": "Square", "url": "https://squareup.com" },
+        { "name": "Wise", "url": "https://wise.com" },
+        { "name": "Mercury", "url": "https://mercury.com" },
+        { "name": "Brex", "url": "https://brex.com" }
+      ],
       "avgPricing": "transaction-based",
       "marketSize": "$340B",
       "saturation": "medium",
       "moat": "regulatory, trust, integrations",
-      "opportunity": "Vertical fintech (creator payouts, freelancer invoicing, micro-lending)"
+      "opportunity": "Vertical fintech (creator payouts, freelancer invoicing, micro-lending)",
+      "icp": "SMBs and freelancers processing $10K-$1M/month in transactions who need simpler alternatives to banks",
+      "icpWhy": "Financial pain is visceral — high fees, slow payouts, and poor UX create strong motivation to switch",
+      "tam": "$340B",
+      "sam": "$34B",
+      "som": "$170M"
     },
     "education": {
-      "players": ["Teachable", "Thinkific", "Podia", "Kajabi", "Skool"],
+      "players": [
+        { "name": "Teachable", "url": "https://teachable.com" },
+        { "name": "Thinkific", "url": "https://thinkific.com" },
+        { "name": "Podia", "url": "https://podia.com" },
+        { "name": "Kajabi", "url": "https://kajabi.com" },
+        { "name": "Skool", "url": "https://skool.com" }
+      ],
       "avgPricing": "$39-199/mo",
       "marketSize": "$16.3B",
       "saturation": "medium",
       "moat": "content lock-in",
-      "opportunity": "Cohort-based learning, AI tutoring, skill-specific platforms"
+      "opportunity": "Cohort-based learning, AI tutoring, skill-specific platforms",
+      "icp": "Course creators and coaches with an existing audience (1K+ followers) looking to monetize expertise",
+      "icpWhy": "Creators with audiences have proven demand — they just need a platform to convert followers to paying students",
+      "tam": "$16.3B",
+      "sam": "$4.9B",
+      "som": "$49M"
     },
     "health-wellness": {
-      "players": ["Calm", "Headspace", "Noom", "MyFitnessPal"],
+      "players": [
+        { "name": "Calm", "url": "https://calm.com" },
+        { "name": "Headspace", "url": "https://headspace.com" },
+        { "name": "Noom", "url": "https://noom.com" },
+        { "name": "MyFitnessPal", "url": "https://myfitnesspal.com" }
+      ],
       "avgPricing": "$10-60/mo",
       "marketSize": "$7.2B",
       "saturation": "medium",
       "moat": "habit formation, data",
-      "opportunity": "Niche wellness (sleep, nutrition tracking, mental health journaling)"
+      "opportunity": "Niche wellness (sleep, nutrition tracking, mental health journaling)",
+      "icp": "Health-conscious millennials and Gen-Z (25-40) willing to pay for digital wellness subscriptions",
+      "icpWhy": "This demographic spends on self-improvement, has high digital literacy, and discovers products through social proof",
+      "tam": "$7.2B",
+      "sam": "$2.2B",
+      "som": "$22M"
     }
   }
 }

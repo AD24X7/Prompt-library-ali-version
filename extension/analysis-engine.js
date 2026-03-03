@@ -3,23 +3,141 @@
 
 const AnalysisEngine = {
   // ── Main entry point ───────────────────────────────────────────────
-  analyze(pageData, benchmarks, competitors) {
+  analyze(pageData, benchmarks, competitors, vision) {
     const category = this.resolveCategory(pageData, competitors);
     const monetization = this.assessMonetization(pageData, benchmarks, category);
     const completeness = this.assessCompleteness(pageData);
     const competitive = this.assessCompetitive(category, competitors);
     const revenue = this.projectRevenue(monetization, completeness, competitive, benchmarks, category);
     const recommendations = this.generateRecommendations(pageData, monetization, completeness, competitive, category);
+    const prototypeDescription = this.buildPrototypeDescription(pageData, category);
+    const icp = this.analyzeICP(category, competitors);
+    const marketSizing = this.buildMarketSizing(category, competitors);
 
     return {
-      summary: this.buildSummary(pageData, category, revenue),
+      summary: this.buildSummary(pageData, category, revenue, vision),
       category,
+      prototypeDescription,
       monetization,
       completeness,
       competitive,
       revenue,
       recommendations,
+      icp,
+      marketSizing,
       overallScore: this.computeOverallScore(monetization, completeness, competitive, revenue),
+    };
+  },
+
+  // ── Prototype description ────────────────────────────────────────
+  buildPrototypeDescription(pageData, category) {
+    const title = pageData.meta.title || pageData.meta.ogTitle || "Untitled prototype";
+    const desc = pageData.meta.description || pageData.meta.ogDescription || "";
+    const cat = category.primary !== "unknown"
+      ? category.primary.replace(/-/g, " ")
+      : null;
+    const platform = pageData.platform !== "unknown" ? pageData.platform : null;
+
+    const techStack = [];
+    if (pageData.tech.hasReact) techStack.push("React");
+    if (pageData.tech.hasVue) techStack.push("Vue");
+    if (pageData.tech.hasSvelte) techStack.push("Svelte");
+    if (pageData.tech.hasAngular) techStack.push("Angular");
+    if (pageData.tech.hasTailwind) techStack.push("Tailwind");
+    if (pageData.tech.hasStripe) techStack.push("Stripe");
+    if (pageData.tech.hasAuth) techStack.push("Auth");
+    if (pageData.tech.hasDatabase) techStack.push("Database");
+
+    // Build a catchy one-line pitch
+    let catchyPitch;
+    if (cat && desc) {
+      catchyPitch = desc.length > 120 ? desc.slice(0, 117) + "..." : desc;
+    } else if (cat) {
+      catchyPitch = `A ${cat} tool${platform ? ` built on ${platform}` : ""} — early stage, big potential.`;
+    } else {
+      catchyPitch = `A prototype${platform ? ` deployed on ${platform}` : ""} ready for its first users.`;
+    }
+
+    return {
+      title,
+      description: desc,
+      catchyPitch,
+      category: cat,
+      platform,
+      techStack,
+      url: pageData.url,
+      stats: {
+        pages: pageData.features.navDepth,
+        features: pageData.features.headings.length,
+        interactiveElements: pageData.inputCount,
+        links: pageData.linkCount,
+        images: pageData.imageCount,
+      },
+    };
+  },
+
+  // ── ICP analysis ─────────────────────────────────────────────────
+  analyzeICP(category, competitors) {
+    const catData = category.competitorData;
+    if (!catData || !catData.icp) {
+      return {
+        profile: "Early adopters and tech-savvy users looking for alternatives in underserved niches",
+        reasoning: "Category not yet mapped — start with builders and early adopters who tolerate rough edges in exchange for solving a real pain point",
+        signals: [
+          "Target users who actively complain about existing solutions on Twitter/Reddit",
+          "Look for communities where people build workarounds (spreadsheets, Zapier chains)",
+          "Start with a persona you can reach directly — your network, a forum, a Slack group",
+        ],
+      };
+    }
+
+    return {
+      profile: catData.icp,
+      reasoning: catData.icpWhy,
+      signals: [
+        `Market benchmark: ${catData.avgPricing} is what this ICP currently pays`,
+        `Winning moat in this space: ${catData.moat}`,
+        `Where to find them: communities, forums, and channels where ${catData.icp.split(" ")[0].toLowerCase()} professionals gather`,
+      ],
+    };
+  },
+
+  // ── Market sizing (TAM/SAM/SOM) ─────────────────────────────────
+  buildMarketSizing(category, competitors) {
+    const catData = category.competitorData;
+    if (!catData || !catData.tam) {
+      return {
+        tam: { value: "N/A", label: "Total Addressable Market", description: "Full market for this category" },
+        sam: { value: "N/A", label: "Serviceable Addressable Market", description: "Segment you can realistically serve" },
+        som: { value: "N/A", label: "Serviceable Obtainable Market", description: "What you can capture in 2-3 years" },
+        narrative: "Market data unavailable for this category. Run manual research on market reports (Gartner, CB Insights, or Statista) to size the opportunity.",
+      };
+    }
+
+    const saturationNarrative = {
+      very_high: "Crowded market — your wedge needs to be razor-sharp. Focus on a niche that incumbents ignore.",
+      high: "Competitive but not impenetrable. A strong differentiator and focused ICP can carve out meaningful share.",
+      medium: "Room to maneuver. The market is growing faster than incumbents can serve it.",
+      low: "Wide open. First-mover advantage is real here — move fast and own the narrative.",
+    };
+
+    return {
+      tam: {
+        value: catData.tam,
+        label: "Total Addressable Market",
+        description: "Everyone who could theoretically buy this type of product",
+      },
+      sam: {
+        value: catData.sam,
+        label: "Serviceable Addressable Market",
+        description: "The slice you can reach with your go-to-market",
+      },
+      som: {
+        value: catData.som,
+        label: "Serviceable Obtainable Market",
+        description: "Realistic capture in 2-3 years with strong execution",
+      },
+      narrative: saturationNarrative[catData.saturation] || "Analyze market dynamics to refine your positioning.",
     };
   },
 
@@ -301,17 +419,19 @@ const AnalysisEngine = {
 
     // Competitive recs
     if (competitive.saturation === "very_high") {
+      const playerNames = competitive.players.map(p => typeof p === "object" ? p.name : p);
       recs.push({
         priority: "high",
         area: "Positioning",
-        action: `This space has ${competitive.players.length}+ incumbents (${competitive.players.slice(0, 3).join(", ")}). Pick a narrow niche: specific industry, persona, or workflow.`,
+        action: `This space has ${playerNames.length}+ incumbents (${playerNames.slice(0, 3).join(", ")}). Pick a narrow niche: specific industry, persona, or workflow.`,
         reasoning: `${competitive.opportunity}`,
       });
     } else if (competitive.saturation === "high") {
+      const playerNames = competitive.players.map(p => typeof p === "object" ? p.name : p);
       recs.push({
         priority: "medium",
         area: "Positioning",
-        action: `Differentiate clearly from ${competitive.players.slice(0, 3).join(", ")}. Your moat needs to be something they can't easily copy.`,
+        action: `Differentiate clearly from ${playerNames.slice(0, 3).join(", ")}. Your moat needs to be something they can't easily copy.`,
         reasoning: `Market moat is typically: ${competitive.moat}`,
       });
     }
@@ -351,20 +471,32 @@ const AnalysisEngine = {
   },
 
   // ── Summary builder ────────────────────────────────────────────────
-  buildSummary(pageData, category, revenue) {
+  buildSummary(pageData, category, revenue, vision) {
     const platform = pageData.platform !== "unknown"
-      ? `Detected on ${pageData.platform}`
-      : "Standalone prototype";
+      ? pageData.platform
+      : null;
     const cat = category.primary !== "unknown"
       ? category.primary.replace(/-/g, " ")
       : "unclassified category";
     const arr = revenue.scenarios.realistic.arr;
 
+    // Build a catchy, punchy summary
+    const potential = arr > 50000 ? "serious" : arr > 10000 ? "promising" : "early-stage";
+    const platformStr = platform ? `Live on ${platform}` : "Standalone build";
+
+    let oneLiner;
+    if (vision) {
+      oneLiner = `${platformStr} • ${cat} • ${potential} revenue potential. Vision: "${vision.length > 60 ? vision.slice(0, 57) + "..." : vision}"`;
+    } else {
+      oneLiner = `${platformStr} • ${cat} play with ${potential} revenue potential — let's turn this into a business.`;
+    }
+
     return {
-      oneLiner: `${platform} — ${cat} product with ${arr > 10000 ? "meaningful" : "early-stage"} revenue potential.`,
+      oneLiner,
       platform: pageData.platform,
       category: cat,
       realisticARR: `$${arr.toLocaleString()}`,
+      vision: vision || null,
     };
   },
 

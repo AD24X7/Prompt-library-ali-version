@@ -20,14 +20,14 @@ async function loadData() {
 // Handle messages from popup
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.action === "analyze") {
-    handleAnalyze(msg.tabId)
+    handleAnalyze(msg.tabId, msg.vision)
       .then((result) => sendResponse(result))
       .catch((err) => sendResponse({ ok: false, error: err.message }));
     return true; // async
   }
 });
 
-async function handleAnalyze(tabId) {
+async function handleAnalyze(tabId, vision) {
   await loadData();
 
   // First, try to inject content script if not already present
@@ -63,7 +63,8 @@ async function handleAnalyze(tabId) {
         const analysis = AnalysisEngine.analyze(
           response.data,
           benchmarksData,
-          competitorsData
+          competitorsData,
+          vision
         );
         resolve({ ok: true, analysis, rawData: response.data });
       } catch (err) {
