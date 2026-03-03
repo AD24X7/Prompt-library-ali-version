@@ -389,8 +389,9 @@ function renderRecommendations(recs) {
 
 // ── Footer ────────────────────────────────────────────────────────────
 function renderFooter() {
+  const ver = chrome.runtime.getManifest().version;
   const el = div("footer");
-  el.innerHTML = `Analysis based on public SaaS benchmarks (OpenView, KeyBanc, ProfitWell). Not financial advice.`;
+  el.innerHTML = `Analysis based on public SaaS benchmarks (OpenView, KeyBanc, ProfitWell). Not financial advice.<br><span class="footer-version">v${ver}</span>`;
   return el;
 }
 

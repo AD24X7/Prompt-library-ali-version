@@ -717,6 +717,10 @@ body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
   text-decoration: none;
 }
 
+.footer-version {
+  opacity: 0.5;
+}
+
 /* ── Platform badge ─────────────────────────────── */
 .platform-badge {
   display: inline-flex;

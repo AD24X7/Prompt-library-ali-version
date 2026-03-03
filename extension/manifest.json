@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Advisory Board",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Instant business analysis for your prototype — revenue, pricing, competitors, and next steps.",
   "permissions": ["activeTab", "scripting"],
   "action": {
