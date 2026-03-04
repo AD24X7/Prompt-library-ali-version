@@ -1,9 +1,12 @@
 {
   "manifest_version": 3,
   "name": "Advisory Board",
-  "version": "0.2.0",
-  "description": "Instant business analysis for your prototype — revenue, pricing, competitors, and next steps.",
-  "permissions": ["activeTab", "scripting"],
+  "version": "1.0.0",
+  "description": "AI-powered business analysis for your prototype — powered by Claude.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": [
+    "https://api.anthropic.com/*"
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -15,39 +18,13 @@
   "background": {
     "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*.lovable.app/*",
-        "*://*.lovable.dev/*",
-        "*://*.replit.app/*",
-        "*://*.repl.co/*",
-        "*://*.vercel.app/*",
-        "*://*.netlify.app/*",
-        "*://*.surge.sh/*",
-        "*://*.railway.app/*",
-        "*://*.fly.dev/*",
-        "*://*.render.com/*",
-        "*://*.stackblitz.io/*",
-        "*://*.codesandbox.io/*",
-        "*://*.github.io/*",
-        "*://*.gitlab.io/*",
-        "*://*.cloudflare.pages.dev/*",
-        "*://*.pages.dev/*"
-      ],
-      "js": ["content.js"],
-      "run_at": "document_idle"
-    }
-  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["data/*.json"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  }
 }

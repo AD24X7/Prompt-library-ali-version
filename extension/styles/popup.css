@@ -702,6 +702,86 @@ body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
   color: var(--text-primary);
 }
 
+/* ── Setup state ────────────────────────────────── */
+.setup-state {
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.setup-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+  color: var(--accent-purple);
+}
+
+.setup-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.setup-msg {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.setup-btn {
+  background: var(--gradient-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.setup-btn:hover { opacity: 0.9; }
+.setup-btn:active { transform: scale(0.97); }
+
+.setup-hint {
+  margin-top: 16px;
+  font-size: 11px;
+}
+
+.setup-hint a {
+  color: var(--accent-purple);
+  text-decoration: none;
+}
+
+.setup-hint a:hover {
+  text-decoration: underline;
+}
+
+/* ── Retry button ──────────────────────────────── */
+.retry-btn {
+  margin-top: 16px;
+  background: var(--bg-accent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.retry-btn:hover {
+  border-color: var(--accent-purple);
+}
+
+/* ── Loading sub text ──────────────────────────── */
+.loading-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
 /* ── Footer ─────────────────────────────────────── */
 .footer {
   padding: 10px 18px;
@@ -715,6 +795,11 @@ body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 .footer a {
   color: var(--accent-purple);
   text-decoration: none;
+  cursor: pointer;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }
 
 .footer-version {
